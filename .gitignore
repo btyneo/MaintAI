@@ -1,0 +1,14 @@
+# Python env & cache
+.venv/
+__pycache__/
+*.pyc
+
+# Jupyter junk
+.ipynb_checkpoints/
+
+# Data & outputs
+data/
+*.png
+
+#other files
+info_for_me.txt
