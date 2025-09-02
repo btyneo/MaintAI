@@ -1,6 +1,8 @@
 # MaintAI
 
-![MaintAI Banner](results/banner.png)
+<p align="center">
+  <img src="results/banner.png" alt="MaintAI Banner" width="1000"/>
+</p>
 
 MaintAI is a predictive maintenance project that estimates the **Remaining Useful Life (RUL)** of engines using NASA's CMAPSS dataset (FD001 subset).  
 The goal is to predict how many cycles an engine has left before failure, which is directly relevant to reducing downtime in industrial automation.
@@ -69,11 +71,15 @@ Test set (engines 81–100, last cycles):
 
 **Plots:**
 
-![Predicted vs True RUL](results/pred_vs_true.png)  
-*Figure 1: RandomForest predicted vs true RUL*  
+<p align="center">
+  <img src="results/pred_vs_true.png" alt="Predicted vs True RUL" width="800"/><br>
+  <em>Figure 1: RandomForest predicted vs true RUL</em>
+</p>
 
-![Feature Importances](results/feature_importances.png)  
-*Figure 2: Top feature importances from RandomForest*  
+<p align="center">
+  <img src="results/feature_importances.png" alt="Feature Importances" width="800"/><br>
+  <em>Figure 2: Top feature importances from RandomForest</em>
+</p>
 
 ---
 
