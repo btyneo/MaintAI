@@ -12,3 +12,9 @@ data/
 
 #other files
 info_for_me.txt
+
+results/*.pkl
+*.joblib
+*.pt
+*.h5
+*.npz
