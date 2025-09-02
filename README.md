@@ -1,5 +1,7 @@
 # MaintAI
 
+![MaintAI Banner](results/banner.png)
+
 MaintAI is a predictive maintenance project that estimates the **Remaining Useful Life (RUL)** of engines using NASA's CMAPSS dataset (FD001 subset).  
 The goal is to predict how many cycles an engine has left before failure, which is directly relevant to reducing downtime in industrial automation.
 
@@ -28,76 +30,69 @@ pip install -r requirements.txt
 
 # run full training + evaluation pipeline
 python main_train.py
+```
+
 Evaluation metrics will be printed in the console.
 
 Artifacts (plots + metrics CSV) are saved in the results/ folder.
 
-yaml
+---
 
+## Dataset
+- **Source**: NASA CMAPSS  
+- **Subset used**: FD001 (single operating condition, one fault mode).  
+- **Training data**: 100 engines run to failure.  
+- **Test data**: engines 81–100 (held out).  
+- **Target**: Remaining Useful Life (RUL), calculated as:  
+  \[ RUL = max\_cycle\_per\_engine - current\_cycle \]
 
 ---
-Dataset
-Source: NASA CMAPSS
 
-Subset used: FD001 (single operating condition, one fault mode).
-
-Training data: 100 engines run to failure.
-
-Test data: engines 81–100 (held out).
-
-Target: Remaining Useful Life (RUL), calculated as:
-RUL = max_cycle_per_engine - current_cycle.
-
-Methods
+## Methods
 Baselines tested:
+- **Linear Regression**
+- **RandomForest Regressor** (`n=400`, `random_state=42`)
 
-Linear Regression
+**Features:**
+- 3 operational settings
+- 21 sensor measurements (raw values, no rolling features in MVP)
 
-RandomForest Regressor (n=400, random_state=42)
+---
 
-Features:
-
-3 operational settings
-
-21 sensor measurements (raw values, no rolling features in MVP)
-
-Results
+## Results
 Test set (engines 81–100, last cycles):
 
-Model	MAE (cycles)	RMSE (cycles)	R²
-Linear Regression	38.66	53.14	0.5233
-RandomForest	36.39	51.11	0.5649
+| Model             | MAE (cycles) | RMSE (cycles) | R²     |
+|-------------------|--------------|---------------|--------|
+| Linear Regression | 38.66        | 53.14         | 0.5233 |
+| RandomForest      | 36.39        | 51.11         | 0.5649 |
 
-Plots
+**Plots:**
 
-Predicted vs True Remaining Useful Life (RandomForest)
+![Predicted vs True RUL](results/pred_vs_true.png)  
+*Figure 1: RandomForest predicted vs true RUL*  
 
-
-Top feature importances from RandomForest
-
-Interpretation
-Predictions are within ±36 cycles of the true RUL on average.
-
-Sensor measurements like sensor_measurement_11, sensor_measurement_14, and operational settings were among the top features.
-
-Performance is strong enough for maintenance planning windows of ~30–50 cycles.
-
-RandomForest outperformed Linear Regression by capturing non-linear sensor–RUL relationships.
-
-Next Steps
-Add rolling-window features (mean, std, slope) to capture temporal trends more robustly.
-
-Train an LSTM baseline on sequence windows to learn degradation patterns directly.
-
-Compare with XGBoost and CNN/transformer-based time-series models.
-
-Add a binary classifier for “failure soon” (e.g. RUL ≤ 30).
-
-Explore drift monitoring and adaptation to other CMAPSS subsets (FD002–FD004).
-
-License
-MIT License
-
-
+![Feature Importances](results/feature_importances.png)  
+*Figure 2: Top feature importances from RandomForest*  
 
 ---
+
+## Interpretation
+- Predictions are within ±36 cycles of the true RUL on average.  
+- Sensor measurements like `sensor_measurement_11`, `sensor_measurement_14`, and operational settings were among the top features.  
+- Performance is strong enough for maintenance planning windows of ~30–50 cycles.  
+- RandomForest outperformed Linear Regression by capturing non-linear sensor–RUL relationships.  
+
+---
+
+## Next Steps
+- Add rolling-window features (mean, std, slope) to capture temporal trends more robustly.  
+- Train an LSTM baseline on sequence windows to learn degradation patterns directly.  
+- Compare with XGBoost and CNN/transformer-based time-series models.  
+- Add a binary classifier for “failure soon” (e.g. RUL ≤ 30).  
+- Explore drift monitoring and adaptation to other CMAPSS subsets (FD002–FD004).  
+
+---
+
+## License
+MIT License
