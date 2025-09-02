@@ -8,7 +8,7 @@ __pycache__/
 
 # Data & outputs
 data/
-*.png
+
 
 #other files
 info_for_me.txt
