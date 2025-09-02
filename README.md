@@ -15,6 +15,7 @@ The goal is to predict how many cycles an engine has left before failure, which 
 ---
 
 ## Setup
+
 ```bash
 # create virtual environment (first time only)
 python -m venv .venv
@@ -65,21 +66,15 @@ Model	MAE (cycles)	RMSE (cycles)	R²
 Linear Regression	38.66	53.14	0.5233
 RandomForest	36.39	51.11	0.5649
 
-
+Plots
 
 Predicted vs True Remaining Useful Life (RandomForest)
-
-![Pred vs True](results/pred_vs_true.png)  
-*Predicted vs True Remaining Useful Life (RandomForest)*
 
 
 Top feature importances from RandomForest
 
-![Feature Importances](results/feature_importances.png)  
-*Top feature importances from RandomForest*
-
 Interpretation
-Predictions are within ±36.39 cycles of the true RUL on average.
+Predictions are within ±36 cycles of the true RUL on average.
 
 Sensor measurements like sensor_measurement_11, sensor_measurement_14, and operational settings were among the top features.
 
@@ -100,3 +95,7 @@ Explore drift monitoring and adaptation to other CMAPSS subsets (FD002–FD004).
 
 License
 MIT License
+
+
+
+---
