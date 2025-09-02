@@ -32,8 +32,10 @@ Evaluation metrics will be printed in the console.
 
 Artifacts (plots + metrics CSV) are saved in the results/ folder.
 
-Linear Regression baseline metrics are logged in results/metrics.csv.
+yaml
 
+
+---
 Dataset
 Source: NASA CMAPSS
 
