@@ -54,7 +54,7 @@ python main_train.py
 - **Test data**: engines 81–100 (held out for RUL regression)
 - **Target (regression)**: Remaining Useful Life (RUL), calculated as:
 
-$$RUL = \text{max\_cycle\_per\_engine} - \text{current\_cycle}$$
+RUL = max_cycle_per_engine − current_cycle
 
 ---
 
